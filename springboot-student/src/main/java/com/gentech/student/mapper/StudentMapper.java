@@ -8,6 +8,7 @@ public class StudentMapper {
     {
 
         StudentDto studentDto=new StudentDto(
+                student.getStudentId(),
                 student.getFirstName(),
                 student.getCourseName(),
                 student.getEmailId()
@@ -18,6 +19,7 @@ public class StudentMapper {
     public static Student mapToStudent(StudentDto studentDto)
     {
         Student student=new Student(
+                studentDto.getStudentId(),
                 studentDto.getFirstName(),
                 studentDto.getCourseName(),
                 studentDto.getEmailId()

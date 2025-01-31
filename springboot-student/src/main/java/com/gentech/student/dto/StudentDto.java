@@ -9,6 +9,14 @@ public class StudentDto {
     public StudentDto(){
 
     }
+
+    public StudentDto(Integer studentId, String firstName, String courseName, String emailId) {
+        this.studentId = studentId;
+        this.firstName = firstName;
+        this.courseName = courseName;
+        this.emailId = emailId;
+    }
+
     public StudentDto(String firstName, String courseName, String emailId) {
         this.firstName = firstName;
         this.courseName = courseName;
