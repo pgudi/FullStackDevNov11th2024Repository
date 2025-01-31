@@ -20,6 +20,12 @@ public class Student {
 
     }
 
+    public Student(Integer studentId, String firstName, String courseName, String emailId) {
+        this.studentId = studentId;
+        this.firstName = firstName;
+        this.courseName = courseName;
+        this.emailId = emailId;
+    }
 
     public Student(String firstName, String courseName, String emailId) {
         this.firstName = firstName;
