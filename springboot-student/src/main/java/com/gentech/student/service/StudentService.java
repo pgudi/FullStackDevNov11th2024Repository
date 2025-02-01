@@ -12,4 +12,8 @@ public interface StudentService {
     List<StudentDto> getAllStudents();
 
     StudentDto getStudent(Integer id);
+
+    StudentDto editStudent(Integer id, StudentDto studentDto);
+
+    void deleteStudent(Integer id);
 }

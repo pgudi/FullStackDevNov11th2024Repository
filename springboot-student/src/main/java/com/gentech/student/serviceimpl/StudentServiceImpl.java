@@ -41,4 +41,25 @@ public class StudentServiceImpl implements StudentService {
 
         return StudentMapper.mapToStudentDto(existingStudent);
     }
+
+    @java.lang.Override
+    public StudentDto editStudent(Integer id, StudentDto studentDto) {
+        Student existingStudent=studentRepo.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("The Student with id "+id+" has not found in the database"));
+
+        existingStudent.setFirstName(studentDto.getFirstName());
+        existingStudent.setCourseName(studentDto.getCourseName());
+        existingStudent.setEmailId(studentDto.getEmailId());
+
+        Student savedStudent=studentRepo.save(existingStudent);
+        return StudentMapper.mapToStudentDto(savedStudent);
+    }
+
+    @Override
+    public void deleteStudent(Integer id) {
+        studentRepo.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("The Student with id "+id+" has not found in the database"));
+
+        studentRepo.deleteById(id);
+    }
 }

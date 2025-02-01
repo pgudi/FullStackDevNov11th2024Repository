@@ -32,4 +32,18 @@ public class StudentController {
     {
         return new ResponseEntity<>(studService.getStudent(id),HttpStatus.OK);
     }
+
+    @PutMapping("/student/{id}")
+    public ResponseEntity<StudentDto> modifySpecificStudent(@PathVariable Integer id,
+                                                           @RequestBody StudentDto studentDto)
+    {
+        return new ResponseEntity<>(studService.editStudent(id, studentDto), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/student/{id}")
+    public ResponseEntity<String> deleteSpecificStudent(@PathVariable Integer id)
+    {
+        studService.deleteStudent(id);
+        return new ResponseEntity<>("The Student with student Id "+id+" has deleted successfullly", HttpStatus.OK);
+    }
 }

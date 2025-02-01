@@ -11,7 +11,9 @@ public class StudentMapper {
                 student.getStudentId(),
                 student.getFirstName(),
                 student.getCourseName(),
-                student.getEmailId()
+                student.getEmailId(),
+                student.getCreatedDate(),
+                student.getModifiedDate()
         );
         return studentDto;
     }
@@ -22,7 +24,9 @@ public class StudentMapper {
                 studentDto.getStudentId(),
                 studentDto.getFirstName(),
                 studentDto.getCourseName(),
-                studentDto.getEmailId()
+                studentDto.getEmailId(),
+                studentDto.getCreatedDate(),
+                studentDto.getModifiedDate()
         );
         return student;
     }
