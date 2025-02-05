@@ -57,9 +57,10 @@ public class EmployeeController {
     }
 
     @GetMapping("/employee/jobkeyword")
-    public ResponseEntity<List<EmployeeDto>> getEmployeesByJobKeyword(@RequestParam String jobkeyword)
+    public ResponseEntity<List<EmployeeDto>> getEmployeesByJobKeyword(@RequestParam String jobkeyword,
+                                                                        @RequestParam String columnName)
     {
-        return new ResponseEntity<>(service.getEmployeesByJobNameKeyword(jobkeyword),HttpStatus.OK);
+        return new ResponseEntity<>(service.getEmployeesByJobNameKeyword(jobkeyword,columnName),HttpStatus.OK);
     }
 
     @GetMapping("/employee/pagination")

@@ -1,6 +1,7 @@
 package com.gentech.employee.repository;
 
 import com.gentech.employee.entity.Employee;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
@@ -14,6 +15,6 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long>, Pagin
 
     List<Employee> findBySalary(Integer salary);
 
-    List<Employee> findByJobNameContaining(String keyword);
+    List<Employee> findByJobNameContaining(String keyword, Sort sort);
 
 }
