@@ -8,6 +8,7 @@ import com.gentech.employee.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -70,15 +71,16 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public List<EmployeeDto> getEmployeesByJobNameKeyword(String jobkeyword) {
-        return repository.findByJobNameContaining(jobkeyword).stream()
+    public List<EmployeeDto> getEmployeesByJobNameKeyword(String jobkeyword, String columnName) {
+        Sort sort=Sort.by(Sort.Direction.DESC, columnName);
+        return repository.findByJobNameContaining(jobkeyword, sort).stream()
                 .map((employee) -> EmployeeMapper.mapToEmployeeDto(employee))
                 .collect(Collectors.toList());
     }
 
     @Override
     public List<EmployeeDto> getAllEmployees(Integer pageNumber, Integer pageSize) {
-        Pageable pages= PageRequest.of(pageNumber, pageSize);
+        Pageable pages= PageRequest.of(pageNumber, pageSize, Sort.Direction.ASC, "id" );
         return repository.findAll(pages).getContent().stream()
                 .map((employee) -> EmployeeMapper.mapToEmployeeDto(employee))
                 .collect(Collectors.toList());
