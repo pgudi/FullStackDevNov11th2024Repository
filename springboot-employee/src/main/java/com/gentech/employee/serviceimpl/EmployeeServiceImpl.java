@@ -6,7 +6,12 @@ import com.gentech.employee.mapper.EmployeeMapper;
 import com.gentech.employee.repository.EmployeeRepository;
 import com.gentech.employee.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -42,4 +47,41 @@ public class EmployeeServiceImpl implements EmployeeService {
 
         return EmployeeMapper.mapToEmployeeDto(savedEmploee);
     }
+
+    @Override
+    public List<EmployeeDto> getEmployeesByName(String name) {
+        return repository.findByName(name).stream()
+                .map((employee) -> EmployeeMapper.mapToEmployeeDto(employee))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<EmployeeDto> getEmployeesByCityNameAndCountryName(String city, String country) {
+        return repository.findByCityNameAndCountryName(city, country).stream()
+                .map((employee) -> EmployeeMapper.mapToEmployeeDto(employee))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<EmployeeDto> getEmployeesBySalary(Integer salary) {
+        return repository.findBySalary(salary).stream()
+                .map((employee) -> EmployeeMapper.mapToEmployeeDto(employee))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<EmployeeDto> getEmployeesByJobNameKeyword(String jobkeyword) {
+        return repository.findByJobNameContaining(jobkeyword).stream()
+                .map((employee) -> EmployeeMapper.mapToEmployeeDto(employee))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<EmployeeDto> getAllEmployees(Integer pageNumber, Integer pageSize) {
+        Pageable pages= PageRequest.of(pageNumber, pageSize);
+        return repository.findAll(pages).getContent().stream()
+                .map((employee) -> EmployeeMapper.mapToEmployeeDto(employee))
+                .collect(Collectors.toList());
+    }
 }
+
