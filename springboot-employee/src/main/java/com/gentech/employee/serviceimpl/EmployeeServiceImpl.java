@@ -85,5 +85,24 @@ public class EmployeeServiceImpl implements EmployeeService {
                 .map((employee) -> EmployeeMapper.mapToEmployeeDto(employee))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public List<EmployeeDto> getEmployeesByJobNameOrCountryName(String jobname, String countryName) {
+        return repository.getEmployeesByJobNameOrCountryName(jobname,countryName).stream()
+                .map((employee) -> EmployeeMapper.mapToEmployeeDto(employee))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public Integer deleteEmployeesByCityName(String cityName) {
+
+        return repository.deleteEmployeesByCityName(cityName);
+    }
+
+    @Override
+    public Integer updateEmployeesByJobName(String countryName, String jobName) {
+        return repository.updateEmployeesByJobName(countryName,jobName);
+    }
+
 }
 
