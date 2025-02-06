@@ -70,4 +70,28 @@ public class EmployeeController {
         List<EmployeeDto> employees=service.getAllEmployees(pageNumber, pageSize);
         return  new ResponseEntity<>(employees, HttpStatus.OK);
     }
+
+    @GetMapping("/employee/filterjoborcountry")
+    public ResponseEntity<List<EmployeeDto>> getEmployeesUsingJobOrCountry(
+          @RequestParam String jobName,@RequestParam String countryName
+    )
+    {
+        List<EmployeeDto> employees=service.getEmployeesByJobNameOrCountryName(jobName,countryName);
+        return new ResponseEntity<>(employees, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/employee/deletebycity")
+    public ResponseEntity<String> deleteEmployeesByCity(@RequestParam String cityName)
+    {
+        Integer count=service.deleteEmployeesByCityName(cityName);
+        return new ResponseEntity<>(count+" employees records have affected by delete operation", HttpStatus.OK);
+    }
+
+    @PutMapping("/employee/updatebyjob")
+    public ResponseEntity<String> updateEmployeesByJob(@RequestParam String countryName,
+                                                       @RequestParam String jobName)
+    {
+        Integer count=service.updateEmployeesByJobName(countryName,jobName);
+        return new ResponseEntity<>(count+" Employees records have updated by JobName filter condition!!!", HttpStatus.OK);
+    }
 }

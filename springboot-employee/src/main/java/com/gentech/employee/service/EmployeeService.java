@@ -1,6 +1,7 @@
 package com.gentech.employee.service;
 
 import com.gentech.employee.dto.EmployeeDto;
+import com.gentech.employee.entity.Employee;
 import org.springframework.data.domain.Sort;
 
 import java.util.List;
@@ -18,4 +19,10 @@ public interface EmployeeService {
     List<EmployeeDto> getEmployeesByJobNameKeyword(String jobkeyword, String columnName);
 
     List<EmployeeDto> getAllEmployees(Integer pageNumber, Integer pageSize);
+
+    List<EmployeeDto> getEmployeesByJobNameOrCountryName(String jobName, String countryName);
+
+    Integer deleteEmployeesByCityName(String cityName);
+
+    Integer updateEmployeesByJobName(String countryName,String jobName);
 }
