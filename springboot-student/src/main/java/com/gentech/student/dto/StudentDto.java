@@ -22,6 +22,12 @@ public class StudentDto {
         this.modifiedDate = modifiedDate;
     }
 
+    public StudentDto(String firstName, String courseName, String emailId) {
+        this.firstName = firstName;
+        this.courseName = courseName;
+        this.emailId = emailId;
+    }
+
     public StudentDto(Integer studentId, String firstName, String courseName, String emailId, Date createdDate, Date modifiedDate) {
         this.studentId = studentId;
         this.firstName = firstName;
