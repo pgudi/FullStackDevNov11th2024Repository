@@ -40,6 +40,12 @@ public class Student {
         this.modifiedDate = modifiedDate;
     }
 
+    public Student(String firstName, String courseName, String emailId) {
+        this.firstName = firstName;
+        this.courseName = courseName;
+        this.emailId = emailId;
+    }
+
     public Student(Integer studentId, String firstName, String courseName, String emailId, Date createdDate, Date modifiedDate) {
         this.studentId = studentId;
         this.firstName = firstName;
