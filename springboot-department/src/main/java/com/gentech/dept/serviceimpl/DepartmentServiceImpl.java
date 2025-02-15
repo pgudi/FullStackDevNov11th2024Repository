@@ -19,7 +19,11 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public Department createDepartment(Department department) {
+    public Department createDepartment(Department department) throws Exception {
+        if(department.getDepartmentName().length() > 12)
+        {
+            throw new Exception("The Department should not be created using more than 12 characters, please valid length of characters!!!");
+        }
         return departmentrepo.save(department);
     }
 

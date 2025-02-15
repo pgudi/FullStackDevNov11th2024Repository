@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface DepartmentService {
 
-    Department createDepartment(Department department);
+    Department createDepartment(Department department) throws Exception;
     List<Department> getAllDepartments();
     Department getDepartment(Long id);
     Department modifyDepartment(Long id, Department department);
