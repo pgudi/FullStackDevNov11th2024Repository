@@ -27,10 +27,25 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
+    public List<EmployeeDto> getEmployees() {
+        return repository.findAll().stream()
+                .map((employee) -> EmployeeMapper.mapToEmployeeDto(employee))
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public EmployeeDto getEmployee(Long id) {
         Employee employee=repository.findById(id).orElseThrow(() ->
                 new RuntimeException("The Employee With id "+id+" has not found in the database!!!"));
         return EmployeeMapper.mapToEmployeeDto(employee);
+    }
+
+    @Override
+    public void deleteEmployee(Long id) {
+        repository.findById(id).orElseThrow(() ->
+                new RuntimeException("The Employee With id "+id+" has not found in the database!!!"));
+
+        repository.deleteById(id);
     }
 
     @Override

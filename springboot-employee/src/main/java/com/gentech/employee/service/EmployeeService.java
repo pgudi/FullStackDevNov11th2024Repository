@@ -9,7 +9,9 @@ import java.util.List;
 public interface EmployeeService {
 
     EmployeeDto createEmployee(EmployeeDto employeeDto);
+    List<EmployeeDto> getEmployees();
     EmployeeDto getEmployee(Long id);
+    void deleteEmployee(Long id);
     EmployeeDto modifyEmployee(Long id,EmployeeDto employeeDto);
     List<EmployeeDto> getEmployeesByName(String name);
     List<EmployeeDto> getEmployeesByCityNameAndCountryName(String city,String country);

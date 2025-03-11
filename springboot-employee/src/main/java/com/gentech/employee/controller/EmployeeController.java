@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin(value = "*")
 @RestController
 @RequestMapping("/api/v1")
 public class EmployeeController {
@@ -21,10 +21,23 @@ public class EmployeeController {
         return new ResponseEntity<>(service.createEmployee(employeeDto), HttpStatus.CREATED);
     }
 
+    @GetMapping("/employees")
+    public ResponseEntity<List<EmployeeDto>> getAllEmployees()
+    {
+        return new ResponseEntity<>(service.getEmployees(), HttpStatus.OK);
+    }
+
     @GetMapping("/employee/{id}")
     public ResponseEntity<EmployeeDto> getEmployee(@PathVariable Long id)
     {
         return new ResponseEntity<>(service.getEmployee(id), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/employee/{id}")
+    public ResponseEntity<String> deleteEmployeeById(@PathVariable Long id)
+    {
+        service.deleteEmployee(id);
+        return new ResponseEntity<String>("The Employee Id "+id+" has deleted successfully",HttpStatus.OK);
     }
 
     @PutMapping("/employee/{id}")
